@@ -126,7 +126,7 @@
 
 
           <div class="col-lg-12">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <form action="https://formspree.io/f/xknkngbo" method="post" role="form" id="php-email-form" class="php-email-form">
               <div class="row">
                 <div class="col-md-6 form-group">
                   <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
@@ -142,11 +142,12 @@
                 <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
               </div>
               <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
+                <!-- <div class="loading">Loading</div> -->
+                
+                <!-- <div id="sent-message" class="sent-message"></div> -->
               </div>
               <div class="text-center"><button type="submit">Send Message</button></div>
+              <p class="status" id="status"></p>
             </form>
           </div>
 
@@ -239,7 +240,7 @@
       &copy; Copyright <strong><span>DownWind Construction</span></strong>. All Rights Reserved
     </div>
     <div class="credits">
-  Designed by <a href="https://bootstrapmade.com/">QuantDesigns</a>
+  Designed by <a href="#">QuantDesigns</a>
     </div>
   </div>
 </footer><!-- End Footer -->
@@ -259,5 +260,29 @@
   <script src="assets/js/main.js"></script>
 
 </body>
+
+
+<script>
+  var form = document.getElementById("php-email-form");
+  
+  async function handleSubmit(event) {
+    event.preventDefault();
+    var status = document.getElementById("status");
+    var data = new FormData(event.target);
+    fetch(event.target.action, {
+      method: form.method,
+      body: data,
+      headers: {
+          'Accept': 'application/json'
+      }
+    }).then(response => {
+      status.innerHTML = "Thanks! We'll be in touch, shortly!";
+      form.reset()
+    }).catch(error => {
+      status.innerHTML = "Oops! There was a problem submitting your form"
+    });
+  }
+  form.addEventListener("submit", handleSubmit)
+</script>
 
 </html>

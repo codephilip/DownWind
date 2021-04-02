@@ -1449,7 +1449,7 @@ section {
   margin-top: 25px;
 }
 
-.contact .php-email-form .sent-message {
+.contact .php-email-form .sent-message.success {
   display: none;
   color: #fff;
   background: #18d26e;
@@ -1524,6 +1524,39 @@ section {
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+#status{
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+  padding: 10px;
+  margin: 0 auto;
+  border-radius: 9px;
+}
+
+#status.success{
+  background-color: #18d26e;
+  animation:status 4s ease forward
+}
+
+#status.error{
+  background-color: #e96b56;
+  color:white;
+  animation:status 4s ease forward
+}
+
+@keyframes status{
+  0%{
+    opacity:1;
+    pointer-events: all;
+  }
+  90%{opacity:1;
+      pointer-events: all;
+  }
+  100%{
+    opacity:0;
+    pointer-events: none;
   }
 }
 
